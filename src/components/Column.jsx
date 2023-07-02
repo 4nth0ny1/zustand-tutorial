@@ -8,11 +8,23 @@ export default function Column({ state }) {
   const tasks = useStore((store) =>
     store.tasks.filter((task) => task.state === state)
   );
+  const setDraggedTask = useStore((store) => store.setDraggedTask);
+  const draggedTask = useStore((store) => store.draggedTask);
+  const moveTask = useStore((store) => store.moveTask);
 
   const addTask = useStore((store) => store.addTask);
 
   return (
-    <div className="column">
+    <div
+      className="column"
+      onDragOver={(e) => {
+        e.preventDefault();
+      }}
+      onDrop={() => {
+        moveTask(draggedTask, state);
+        setDraggedTask(null);
+      }}
+    >
       <div className="titleWrapper">
         <p>{state}</p>
         <input
