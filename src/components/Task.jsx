@@ -1,12 +1,15 @@
+import classNames from "classnames";
 import "./Task.css";
+
+const STATUS = "ONGOING";
 
 export default function Task({ title }) {
   return (
     <div className="task">
       <div>{title}</div>
-      <div>
+      <div className="bottomWrapper">
         <div></div>
-        <div className="status">{status}</div>
+        <div className={classNames("status", STATUS)}>{STATUS}</div>
       </div>
     </div>
   );
