@@ -2,8 +2,6 @@ import classNames from "classnames";
 import { useStore } from "../store";
 import "./Task.css";
 
-const STATUS = "ONGOING";
-
 export default function Task({ title }) {
   const task = useStore((store) =>
     store.tasks.find((task) => task.title === title)
@@ -13,7 +11,7 @@ export default function Task({ title }) {
       <div>{task.title}</div>
       <div className="bottomWrapper">
         <div></div>
-        <div className={classNames("status", STATUS)}>{STATUS}</div>
+        <div className={classNames("status", task.state)}>{task.state}</div>
       </div>
     </div>
   );
